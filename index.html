@@ -267,12 +267,6 @@
             background: #000;
             position: relative;
             overflow: hidden;
-        }
-
-        .tiktok-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             border-radius: 33px;
         }
 
@@ -297,6 +291,70 @@
             height: 12px;
             background: #333;
             border-radius: 50%;
+        }
+
+        /* Vimeo Player Container */
+        .vimeo-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .vimeo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            z-index: 5;
+            transition: opacity 0.5s ease;
+        }
+
+        .vimeo-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .vimeo-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .vimeo-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: white;
+            margin-bottom: 20px;
+            max-width: 80%;
+        }
+
+        .vimeo-play-btn {
+            background: var(--tiktok-gradient);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: var(--tiktok-black);
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .vimeo-play-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(254, 44, 85, 0.4);
         }
 
         /* Installation Guide */
@@ -993,20 +1051,18 @@
                         <div class="notch-camera"></div>
                     </div>
                     <div class="phone-screen">
-                        <!-- Video de Instalação do TikTok+ -->
-                        <video autoplay muted loop playsinline class="tiktok-video" id="installationVideo">
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-installing-a-program-on-a-smartphone-43120-large.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)); border-radius: 33px;"></div>
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 80%;">
-                            <h3 style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">TikTok+ Installation Guide</h3>
-                            <p style="font-size: 0.9rem; opacity: 0.9;">Watch this video to learn how to install TikTok+ correctly on your device</p>
-                            <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
-                                <button id="playVideoBtn" style="background: var(--tiktok-gradient); border: none; padding: 8px 15px; border-radius: 20px; color: black; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                                    <i class="fas fa-play"></i> Play Video
-                                </button>
-                            </div>
+                        <!-- Vimeo Video Player -->
+                        <div class="vimeo-container" id="vimeoPlayer">
+                            <!-- O player do Vimeo será injetado aqui pelo JavaScript -->
+                        </div>
+                        
+                        <!-- Overlay com botão de play -->
+                        <div class="vimeo-overlay" id="vimeoOverlay">
+                            <h3>TikTok+ Installation Guide</h3>
+                            <p>Watch this step-by-step tutorial to learn how to install TikTok+ correctly on your device</p>
+                            <button class="vimeo-play-btn" id="playVimeoBtn">
+                                <i class="fas fa-play"></i> Play Installation Guide
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1236,6 +1292,9 @@
         </div>
     </footer>
 
+    <!-- Vimeo Player API -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    
     <script>
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1285,56 +1344,63 @@
                 }
             });
         });
+
+        // Vimeo Player Integration
+        const vimeoPlayerContainer = document.getElementById('vimeoPlayer');
+        const vimeoOverlay = document.getElementById('vimeoOverlay');
+        const playVimeoBtn = document.getElementById('playVimeoBtn');
         
-        // Video controls for installation video
-        const installationVideo = document.getElementById('installationVideo');
-        const playVideoBtn = document.getElementById('playVideoBtn');
+        let vimeoPlayer = null;
         
-        if (installationVideo && playVideoBtn) {
-            // Make sure video is muted for autoplay
-            installationVideo.muted = true;
+        // Initialize Vimeo Player
+        function initVimeoPlayer() {
+            // ID do vídeo do Vimeo (1149447458)
+            const videoId = '1149447458';
             
-            playVideoBtn.addEventListener('click', () => {
-                if (installationVideo.paused) {
-                    installationVideo.play();
-                    playVideoBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Video';
-                } else {
-                    installationVideo.pause();
-                    playVideoBtn.innerHTML = '<i class="fas fa-play"></i> Play Video';
-                }
+            // Criar iframe do Vimeo
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=0&loop=0&title=0&byline=0&portrait=0&muted=0`;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.style.borderRadius = '33px';
+            
+            vimeoPlayerContainer.appendChild(iframe);
+            
+            // Inicializar player
+            vimeoPlayer = new Vimeo.Player(iframe);
+            
+            // Configurar eventos do player
+            vimeoPlayer.on('play', function() {
+                vimeoOverlay.classList.add('hidden');
             });
             
-            // Autoplay the video (muted)
-            installationVideo.play().catch(e => {
-                console.log("Autoplay prevented, waiting for user interaction");
-                // Show play button more prominently
-                playVideoBtn.style.transform = 'scale(1.1)';
-                playVideoBtn.style.boxShadow = '0 0 20px rgba(254, 44, 85, 0.7)';
-                
-                // When user clicks anywhere, try to play
-                document.addEventListener('click', () => {
-                    installationVideo.play().then(() => {
-                        playVideoBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Video';
-                    }).catch(err => {
-                        console.log("Still can't autoplay");
-                    });
-                }, { once: true });
+            vimeoPlayer.on('pause', function() {
+                vimeoOverlay.classList.remove('hidden');
             });
             
-            // Update button text when video ends
-            installationVideo.addEventListener('ended', () => {
-                playVideoBtn.innerHTML = '<i class="fas fa-redo"></i> Replay Video';
-            });
-            
-            // Update button text when video is playing
-            installationVideo.addEventListener('play', () => {
-                playVideoBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Video';
-            });
-            
-            installationVideo.addEventListener('pause', () => {
-                playVideoBtn.innerHTML = '<i class="fas fa-play"></i> Play Video';
+            vimeoPlayer.on('ended', function() {
+                vimeoOverlay.classList.remove('hidden');
             });
         }
+        
+        // Botão Play
+        playVimeoBtn.addEventListener('click', function() {
+            if (vimeoPlayer) {
+                vimeoPlayer.play().then(() => {
+                    console.log('Video started playing');
+                }).catch(error => {
+                    console.error('Error playing video:', error);
+                });
+            }
+        });
+        
+        // Inicializar player quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            initVimeoPlayer();
+        });
         
         // Animate elements on scroll
         const observerOptions = {
@@ -1368,6 +1434,4 @@
         });
     </script>
 </body>
-
 </html>
-
