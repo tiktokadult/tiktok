@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok+ | Exclusive 18+ Content Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tiktok-black: #000000;
+            --tiktok-pink: #FE2C55;
+            --tiktok-blue: #25F4EE;
+            --tiktok-gray: #121212;
+            --tiktok-light-gray: #2A2A2A;
+            --tiktok-white: #FFFFFF;
+            --tiktok-gradient: linear-gradient(90deg, var(--tiktok-blue) 0%, var(--tiktok-pink) 100%);
+            --shadow-heavy: 0 25px 70px rgba(254, 44, 85, 0.35);
+            --shadow-light: 0 15px 40px rgba(254, 44, 85, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--tiktok-black);
+            color: var(--tiktok-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        .header-scrolled {
+            padding: 15px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tiktok-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tiktok-logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .tiktok-logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -1px;
+        }
+
+        .tiktok-plus {
+            color: var(--tiktok-pink);
+            font-weight: 900;
+            font-size: 28px;
+            margin-left: -5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            color: var(--tiktok-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a:hover {
+            color: var(--tiktok-pink);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--tiktok-gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--tiktok-white);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 200px 0 150px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 50%, rgba(254, 44, 85, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 20%, rgba(37, 244, 238, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4.2rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-gradient-text {
+            background: var(--tiktok-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: block;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+            max-width: 550px;
+            font-weight: 400;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 25px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 22px 40px;
+            background: var(--tiktok-gradient);
+            color: var(--tiktok-black);
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 18px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--tiktok-white);
+            z-index: -1;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .download-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .download-btn:hover {
+            color: var(--tiktok-black);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 35px 80px rgba(254, 44, 85, 0.45);
+        }
+
+        .download-btn i {
+            font-size: 28px;
+        }
+
+        .phone-mockup-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 340px;
+            height: 690px;
+            background: var(--tiktok-black);
+            border-radius: 45px;
+            position: relative;
+            box-shadow: var(--shadow-heavy);
+            overflow: hidden;
+            border: 12px solid #000;
+            z-index: 2;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tiktok-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 33px;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 30px;
+            background: var(--tiktok-black);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notch-camera {
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        /* Installation Guide */
+        .installation-guide {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid rgba(254, 44, 85, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .guide-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .guide-header i {
+            color: var(--tiktok-blue);
+            font-size: 28px;
+        }
+
+        .guide-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .guide-text {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .guide-steps {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .guide-step {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--tiktok-pink);
+        }
+
+        .guide-step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--tiktok-gradient);
+            color: var(--tiktok-black);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 800;
+            margin-right: 10px;
+        }
+
+        /* Content Preview Section */
+        .content-preview {
+            padding: 120px 0;
+            background-color: var(--tiktok-gray);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.2rem;
+            margin-bottom: 80px;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-title span {
+            background: var(--tiktok-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .content-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .content-item:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .content-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .content-item:hover .content-image {
+            transform: scale(1.1);
+        }
+
+        .content-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+        }
+
+        .content-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .content-overlay p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .content-tag {
+            display: inline-block;
+            background: var(--tiktok-gradient);
+            color: var(--tiktok-black);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background-color: var(--tiktok-black);
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            padding: 45px 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--tiktok-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(254, 44, 85, 0.3);
+            box-shadow: var(--shadow-light);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.08;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--tiktok-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: var(--tiktok-black);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--tiktok-white);
+            font-weight: 800;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.05rem;
+        }
+
+        /* Age Verification */
+        .age-verification {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--tiktok-black) 0%, rgba(18, 18, 18, 0.95) 100%);
+            position: relative;
+        }
+
+        .age-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 60px;
+            border-radius: 30px;
+            border-left: 6px solid var(--tiktok-pink);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .age-box h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .age-box p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .age-warning {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 40px;
+            background: rgba(254, 44, 85, 0.15);
+            border: 2px solid var(--tiktok-pink);
+            border-radius: 15px;
+            margin-top: 40px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .age-warning i {
+            color: var(--tiktok-pink);
+            font-size: 1.5rem;
+        }
+
+        /* CTA Download Section */
+        .cta-download {
+            padding: 150px 0;
+            background: var(--tiktok-gradient);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L200,0 L200,200 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 400px;
+            opacity: 0.4;
+        }
+
+        .cta-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            color: var(--tiktok-black);
+        }
+
+        .cta-subtitle {
+            font-size: 1.4rem;
+            color: rgba(0, 0, 0, 0.85);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 25px 45px;
+            background: var(--tiktok-black);
+            color: var(--tiktok-white);
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            min-width: 280px;
+            justify-content: center;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-btn i {
+            font-size: 32px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--tiktok-black);
+            padding: 100px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            margin-bottom: 70px;
+        }
+
+        .footer-logo-section .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo-section p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 350px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--tiktok-white);
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 18px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-column a:hover {
+            color: var(--tiktok-pink);
+            padding-left: 8px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 25px;
+        }
+
+        .social-icons a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--tiktok-pink);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-container {
+                gap: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .phone-mockup {
+                width: 300px;
+                height: 610px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 70px;
+            }
+            
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .download-buttons {
+                justify-content: center;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .cta-title {
+                font-size: 3.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 18px 0;
+            }
+            
+            .header-container nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease;
+                z-index: 1000;
+            }
+            
+            .header-container nav.active {
+                display: flex;
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 160px 0 100px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 350px;
+                justify-content: center;
+            }
+            
+            .phone-mockup {
+                width: 280px;
+                height: 570px;
+            }
+            
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .age-box {
+                padding: 40px 30px;
+            }
+            
+            .age-box h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            
+            .cta-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+            
+            .content-item {
+                height: 350px;
+            }
+            
+            .download-btn, .cta-btn {
+                padding: 20px 30px;
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo-container">
+                <div class="tiktok-logo">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="#FE2C55">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                    </svg>
+                    <div class="tiktok-logo-text">TikTok</div>
+                    <div class="tiktok-plus">+</div>
+                </div>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#content">Content</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#safety">Safety</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Exclusive <span class="hero-gradient-text">18+ Content</span> On TikTok+</h1>
+                <p>Unlock premium adult-only videos, live streams, and exclusive creator content. The official TikTok+ app offers verified 18+ content with enhanced privacy and security features.</p>
+                
+                <div class="download-buttons">
+                    <a href="#download" class="download-btn">
+                        <i class="fas fa-download"></i>
+                        <span>Download TikTok+ Now</span>
+                    </a>
+                </div>
+                
+                <!-- Installation Guide Box -->
+                <div class="installation-guide">
+                    <div class="guide-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h3>IMPORTANT: Watch Installation Guide First</h3>
+                    </div>
+                    <p class="guide-text">Before downloading, please watch the installation video demonstration on the phone screen to ensure you install TikTok+ correctly on your device. The video shows the complete installation process and how to set up your account properly.</p>
+                    
+                    <div class="guide-steps">
+                        <div class="guide-step">
+                            <span class="guide-step-number">1</span>
+                            <strong>Watch the video</strong>
+                            <p>See how to install correctly</p>
+                        </div>
+                        <div class="guide-step">
+                            <span class="guide-step-number">2</span>
+                            <strong>Follow steps</strong>
+                            <p>Install exactly as shown</p>
+                        </div>
+                        <div class="guide-step">
+                            <span class="guide-step-number">3</span>
+                            <strong>Verify age</strong>
+                            <p>Complete age verification</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; display: flex; align-items: center; gap: 15px; color: rgba(255,255,255,0.7);">
+                    <i class="fas fa-shield-alt" style="color: var(--tiktok-blue);"></i>
+                    <span>Age verification required • 100% secure • Official app</span>
+                </div>
+            </div>
+            
+            <div class="phone-mockup-container">
+                <div class="phone-mockup">
+                    <div class="phone-notch">
+                        <div class="notch-camera"></div>
+                    </div>
+                    <div class="phone-screen">
+                        <!-- Video de Instalação do TikTok+ -->
+                        <video autoplay muted loop playsinline class="tiktok-video" id="installationVideo">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-installing-a-program-on-a-smartphone-43120-large.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)); border-radius: 33px;"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 80%;">
+                            <h3 style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">TikTok+ Installation Guide</h3>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">Watch this video to learn how to install TikTok+ correctly on your device</p>
+                            <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
+                                <button id="playVideoBtn" style="background: var(--tiktok-gradient); border: none; padding: 8px 15px; border-radius: 20px; color: black; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-play"></i> Play Video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Preview -->
+    <section class="content-preview" id="content">
+        <div class="container">
+            <h2 class="section-title">Exclusive <span>Content Preview</span></h2>
+            
+            <div class="content-grid">
+                <div class="content-item">
+                    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="TikTok Creator" class="content-image">
+                    <div class="content-overlay">
+                        <h3>Premium Creators</h3>
+                        <p>Verified adult content creators</p>
+                        <div class="content-tag">Exclusive</div>
+                    </div>
+                </div>
+                
+                <div class="content-item">
+                    <img src="https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Live Streaming" class="content-image">
+                    <div class="content-overlay">
+                        <h3>Live Streams</h3>
+                        <p>Real-time interaction with creators</p>
+                        <div class="content-tag">Live</div>
+                    </div>
+                </div>
+                
+                <div class="content-item">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1076&q=80" alt="TikTok Dance" class="content-image">
+                    <div class="content-overlay">
+                        <h3>Uncensored Content</h3>
+                        <p>Content beyond regular limits</p>
+                        <div class="content-tag">18+ Only</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#download" class="download-btn" style="max-width: 300px; margin: 0 auto;">
+                    <i class="fas fa-lock"></i>
+                    <span>Unlock All Content</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Premium <span>Features</span></h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Age Verification</h3>
+                    <p>Advanced multi-step age verification system ensures only users 18+ can access the platform. Government ID verification available for premium features.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>Enhanced Privacy</h3>
+                    <p>Control exactly who sees your content and profile. Incognito mode, private accounts, and screenshot detection for maximum privacy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Creator Earnings</h3>
+                    <p>Creators earn up to 80% revenue share from subscriptions, tips, and pay-per-view content. Multiple monetization options available.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hd"></i>
+                    </div>
+                    <h3>4K Ultra HD</h3>
+                    <p>Upload and stream in stunning 4K quality with advanced editing tools, exclusive filters, and professional effects for premium content.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments-dollar"></i>
+                    </div>
+                    <h3>Direct Messages</h3>
+                    <p>Secure private messaging with creators and other users. Send tips, request custom content, and build genuine connections.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>Verified Creators</h3>
+                    <p>All creators are thoroughly verified to ensure authenticity and quality. Blue checkmarks for premium verified accounts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Age Verification -->
+    <section class="age-verification" id="safety">
+        <div class="container">
+            <div class="age-box">
+                <h2>Strict 18+ Age Restriction</h2>
+                <p>TikTok+ is exclusively for adults aged 18 and above. We utilize advanced age verification technology including AI facial analysis and government ID verification to maintain a secure adult-only environment.</p>
+                <p>Our platform operates with zero tolerance for underage users. All content is age-gated, and creators are required to verify their age before uploading any material.</p>
+                
+                <div class="age-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Strictly for adults 18 years and older</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Download Section -->
+    <section class="cta-download" id="download">
+        <div class="container cta-container">
+            <h2 class="cta-title">Download TikTok+ Now</h2>
+            <p class="cta-subtitle">Join millions of users enjoying exclusive 18+ content. The app is free to download with optional premium subscriptions for enhanced features.</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn">
+                    <i class="fab fa-apple"></i>
+                    <span>Download for iOS</span>
+                </a>
+                <a href="#" class="cta-btn">
+                    <i class="fab fa-google-play"></i>
+                    <span>Download for Android</span>
+                </a>
+            </div>
+            
+            <!-- Installation Reminder -->
+            <div style="margin-top: 40px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 15px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div style="display: flex; align-items: center; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <i class="fas fa-video" style="color: var(--tiktok-white); font-size: 1.5rem;"></i>
+                    <p style="color: var(--tiktok-white); font-weight: 600; text-align: center;">
+                        REMEMBER: Watch the installation video first to ensure correct setup of TikTok+ on your device!
+                    </p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 10px; color: rgba(0,0,0,0.8);">
+                    <i class="fas fa-check-circle"></i>
+                    <span>No credit card required</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; color: rgba(0,0,0,0.8);">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Free to download</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; color: rgba(0,0,0,0.8);">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Age verification required</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo-section">
+                    <div class="logo-container">
+                        <div class="tiktok-logo">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="#FE2C55">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                            <div class="tiktok-logo-text">TikTok</div>
+                            <div class="tiktok-plus">+</div>
+                        </div>
+                    </div>
+                    <p>The official TikTok+ platform for exclusive adult content. Verified creators, enhanced privacy, and secure age verification.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#content">Content</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#download">Download</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Age Verification</a></li>
+                            <li><a href="#">Community Guidelines</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact Support</a></li>
+                            <li><a href="#">Creator Portal</a></li>
+                            <li><a href="#">Report Content</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 TikTok+. All rights reserved. TikTok is a registered trademark. TikTok+ is an independent platform for adult content.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const header = document.getElementById('header');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Video controls for installation video
+        const installationVideo = document.getElementById('installationVideo');
+        const playVideoBtn = document.getElementById('playVideoBtn');
+        
+        if (installationVideo && playVideoBtn) {
+            // Make sure video is muted for autoplay
+            installationVideo.muted = true;
+            
+            playVideoBtn.addEventListener('click', () => {
+                if (installationVideo.paused) {
+                    installationVideo.play();
+                    playVideoBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Video';
+                } else {
+                    installationVideo.pause();
+                    playVideoBtn.innerHTML = '<i class="fas fa-play"></i> Play Video';
+                }
+            });
+            
+            // Autoplay the video (muted)
+            installationVideo.play().catch(e => {
+                console.log("Autoplay prevented, waiting for user interaction");
+                // Show play button more prominently
+                playVideoBtn.style.transform = 'scale(1.1)';
+                playVideoBtn.style.boxShadow = '0 0 20px rgba(254, 44, 85, 0.7)';
+                
+                // When user clicks anywhere, try to play
+                document.addEventListener('click', () => {
+                    installationVideo.play().then(() => {
+                        playVideoBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Video';
+                    }).catch(err => {
+                        console.log("Still can't autoplay");
+                    });
+                }, { once: true });
+            });
+            
+            // Update button text when video ends
+            installationVideo.addEventListener('ended', () => {
+                playVideoBtn.innerHTML = '<i class="fas fa-redo"></i> Replay Video';
+            });
+            
+            // Update button text when video is playing
+            installationVideo.addEventListener('play', () => {
+                playVideoBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Video';
+            });
+            
+            installationVideo.addEventListener('pause', () => {
+                playVideoBtn.innerHTML = '<i class="fas fa-play"></i> Play Video';
+            });
+        }
+        
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Observe content items
+        document.querySelectorAll('.content-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(40px) scale(0.95)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
